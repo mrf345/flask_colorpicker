@@ -34,7 +34,7 @@
 #### - Local Spectrum
 ##### by default the extension will load spectrum plugin from [a remote CDN][25530337]. Although you can configure that to be locally through passing a list of two files .js and .css into the colorpicker module like such:
 `colorpicker(app=app, local=['static/js/spectrum.js', 'static/css/spectrum.css'])`
-##### _The order in-which the arguments are passed is not of importance, it will be auto detected_
+##### _The order in-which the items of list are passed is not of importance, it will be auto detected via file extension_
 
   [25530337]: https://cdnjs.com/libraries/spectrum "Spectrum CDN"
 
