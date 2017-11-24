@@ -19,8 +19,8 @@
 `{% extends 'bootstrap/base.html'}` <br />
 `{% block scripts %}` <br />
 `{{ super() }}` <br />
-`{{ colorpicker.loader() }}` <br />
-`{{ colorpicker.picker(id=".cp") }}` <br />
+`{{ colorpicker.loader()|safe }}` <br />
+`{{ colorpicker.picker(id=".cp")|safe }}` <br />
 `{% endblock %}`<br />
 `{% block content %}` <br />
 `<form class="verticalform">`<br />

@@ -20,7 +20,7 @@ setup(
     author_email='mrf345@gmail.com',
     description='color picker flask extension',
     long_description=__doc__,
-    py_modules=['flask_colorpicker'],
+    py_modules=['colorpicker'],
     packages=['flask_colorpicker'],
     zip_safe=False,
     include_package_data=True,
