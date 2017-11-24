@@ -2,32 +2,35 @@
 Flask-Formspree
 -------------
 
-Flask extension to create and modify formspree.io static forms easily
-and with less repetitiveness
+A Flask extension to add Spectrum javascript color picker into the template,
+it makes adding and configuring multiple color pickers at a time much easier
+and less time consuming
 
 """
 from setuptools import setup
 
 
 setup(
-    name='Flask-Formspree',
-    version='0.2',
-    url='https://github.com/mrf345/flask_formspree/',
-    download_url='https://github.com/mrf345/flask_formspree/archive/0.2.tar.gz',
+    name='Flask-Colorpicker',
+    version='0.1',
+    url='https://github.com/mrf345/flask_colorpicker/',
+    download_url='https://github.com/mrf345/flask_colorpicker/archive/0.1.tar.gz',
     license='MIT',
     author='Mohamed Feddad',
     author_email='mrf345@gmail.com',
-    description='formspree flask extension',
+    description='color picker flask extension',
     long_description=__doc__,
-    py_modules=['flask_formspree'],
-    packages=['flask_formspree'],
+    py_modules=['flask_colorpicker'],
+    packages=['flask_colorpicker'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',
     install_requires=[
-        'Flask'
+        'Flask',
+        'Flask-Bootstrap'
     ],
-    keywords=['flask', 'extension', 'formspree', 'static', 'forms'],
+    keywords=['flask', 'extension', 'color', 'picker', 'spectrum',
+              'colorpicker'],
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
