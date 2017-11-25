@@ -1,0 +1,12 @@
+{% block scripts %}
+	{{ super() }}
+	{{ colorpicker.loader() }}
+	{{ colorpicker.picker(id=".cp") }}
+{% endblock %}
+{% block content %}
+	<form class="verticalform">
+		<input class="cp form-control" type="text" />
+	</form>
+	<br><br><br>
+{{ form }}
+{% endblock %}

@@ -1,4 +1,4 @@
-from flask import current_app
+from flask import current_app, Markup
 from os import path
 try:
     from flask import _app_ctx_stack as stack
@@ -54,7 +54,7 @@ class colorpicker(object):
             html += tags[i] % [
                 l for l in links if l.split(
                     '.')[len(l.split('.')) - 1] == n][0]
-        return html
+        return Markup(html)
 
     def picker(self, id=".colorpicker",
                default_color='rgb(0,0,255,0.5)',
@@ -73,15 +73,15 @@ class colorpicker(object):
             if h != 'id' and a != 'true' and a != 'false':
                 raise(TypeError(
                     "colorpicker.picker(%s) only true or false string" % h))
-        return " ".join(['<script>',
-                         '$("%s").spectrum({' % id,
-                         'showAlpha: %s,' % showAlpha,
-                         'showInput: %s,' % showInput,
-                         'showButtons: %s,' % showButtons,
-                         'allowEmpty: %s,' % allowEmpty,
-                         'color: "%s",' % default_color,
-                         'preferredFormat: "%s",' % color_format,
-                         'move: function(color) {',
-                         '$("%s").val(color.toRgbString());' % id,
-                         '},', '});',
-                         '</script>'])
+        return Markup(" ".join(['<script>',
+                                '$("%s").spectrum({' % id,
+                                'showAlpha: %s,' % showAlpha,
+                                'showInput: %s,' % showInput,
+                                'showButtons: %s,' % showButtons,
+                                'allowEmpty: %s,' % allowEmpty,
+                                'color: "%s",' % default_color,
+                                'preferredFormat: "%s",' % color_format,
+                                'move: function(color) {',
+                                '$("%s").val(color.toRgbString());' % id,
+                                '},', '});',
+                                '</script>']))
