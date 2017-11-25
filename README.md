@@ -11,9 +11,11 @@
 `git clone https://github.com/mrf345/flask_colorpicker.git`<br />
 `python setup.py install`
 ## Run it :
-`from flask import Flask` <br />
+`from flask import Flask, render_template` <br />
+`from flask_datepicker import datepicker` <br />
 `from flask_colorpicker import colorpicker` <br />
 `app = Flask(__name__)` <br />
+`Bootstrap(app)` <br />
 `colorpicker(app)` <br />
 #### inside the template
 `{% extends 'bootstrap/base.html'}` <br />
