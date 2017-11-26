@@ -12,7 +12,7 @@
 `python setup.py install`
 ## Run it :
 `from flask import Flask, render_template` <br />
-`from flask_datepicker import datepicker` <br />
+`from flask_bootstrap import Bootstrap` <br />
 `from flask_colorpicker import colorpicker` <br />
 `app = Flask(__name__)` <br />
 `Bootstrap(app)` <br />
