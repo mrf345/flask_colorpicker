@@ -36,7 +36,8 @@ colorpicker(app)
 
 #### _Result_
 ![Spectrum](https://raw.githubusercontent.com/usb-resetter/usb-resetter.github.io/master/images/colorpicker.png)
-### Extra configuration:
+
+## Settings:
 #### - Local Spectrum
 ##### by default the extension will load spectrum plugin from [a remote CDN][25530337]. Although you can configure that to be locally through passing a list of two files .js and .css into the colorpicker module like such:
 
