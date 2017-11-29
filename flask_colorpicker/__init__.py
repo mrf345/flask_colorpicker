@@ -39,14 +39,13 @@ class colorpicker(object):
     def loader(self):
         html = ""
         for i, n in enumerate(['js', 'css']):
-            if self.local == []:
-                links = ['https://cdnjs.cloudflare.com/ajax/' +
-                         'libs/spectrum/1.8.0/spectrum.min.css',
-                         'https://cdnjs.cloudflare.com/ajax/' +
-                         'libs/spectrum/1.8.0/spectrum.min.js']
-            else:
-                links = self.local
-                if not path.isfile(links[0]) and not path.isfile(links[1]):
+            links = ('https://cdnjs.cloudflare.com/ajax/' +
+                     'libs/spectrum/1.8.0/spectrum.min.css',
+                     'https://cdnjs.cloudflare.com/ajax/' +
+                     'libs/spectrum/1.8.0/spectrum.min.js') if (
+                         self.local == []) else self.local
+            for sl in self.local:
+                if not path.isfile(sl):
                     raise(FileNotFoundError(
                         "colorpicker.loader() file not found "))
             tags = ['<script src="%s"></script>\n',

@@ -1,5 +1,5 @@
 """
-Flask-Formspree
+Flask-Colorpicker
 -------------
 
 A Flask extension to add Spectrum javascript color picker into the template,

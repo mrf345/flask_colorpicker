@@ -49,9 +49,8 @@ colorpicker(app=app, local=['static/js/spectrum.js', 'static/css/spectrum.css'])
   [25530337]: https://cdnjs.com/libraries/spectrum "Spectrum CDN"
 
 #### - Customize Spectrum
-##### The accepted arguments to be passed to the
+##### The accepted arguments to be passed to the `colorpicker.picker()` function are as follow:
 ```python
-colorpicker.picker()` function are as follow:
 def picker(self, id=".colorpicker",
             default_color='rgb(0,0,255,0.5)',
             color_format='rgb',
