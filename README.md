@@ -9,6 +9,7 @@
 `pip install Flask-Colorpicker` <br />
 #### - or from github
 `git clone https://github.com/mrf345/flask_colorpicker.git`<br />
+`cd flask_colorpicker` <br />
 `python setup.py install`
 ## Run it :
 ```python
@@ -24,8 +25,8 @@ colorpicker(app)
 {% extends 'bootstrap/base.html'}
 {% block scripts %}
   {{ super() }}
-  {{ colorpicker.loader()|safe }}
-  {{ colorpicker.picker(id=".cp")|safe }}
+  {{ colorpicker.loader() }}
+  {{ colorpicker.picker(id=".cp") }}
 {% endblock %}
 {% block content %}
   <form class="verticalform">
@@ -51,11 +52,11 @@ colorpicker(app=app, local=['static/js/spectrum.js', 'static/css/spectrum.css'])
 #### - Customize Spectrum
 ##### The accepted arguments to be passed to the `colorpicker.picker()` function are as follow:
 ```python
-def picker(self, id=".colorpicker",
-            default_color='rgb(0,0,255,0.5)',
-            color_format='rgb',
-            showAlpha='true',
-            showInput='false',
-            showButtons='false',
-            allowEmpty='true'):
+def picker(self, id=".colorpicker", # id of element to assign colorpicker to
+            default_color='rgb(0,0,255,0.5)', # default color to start with
+            color_format='rgb', # color format to use
+            showAlpha='true', # enable or disable transparency
+            showInput='false', # display or hide color picker
+            showButtons='false', # display or hide buttons
+            allowEmpty='true'): # allow empty input
 ```

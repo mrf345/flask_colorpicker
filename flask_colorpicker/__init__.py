@@ -8,6 +8,11 @@ except ImportError:
 
 class colorpicker(object):
     def __init__(self, app=None, local=[]):
+        """
+        initiating extension with flask app instance
+        @param: app Flask app instance (Default: None)
+        @param: local to load .js .css source code locally (Default: [])
+        """
         self.app = app
         self.local = local
         if self.app is not None:
@@ -20,7 +25,7 @@ class colorpicker(object):
                     TypeError(
                         "colorpicker(local=) requires a list of" +
                         " two files spectrum.js and spectrum.css"))
-        self.injectem()
+        self.injectem()  # injecting module into the template
 
     def init_app(self, app):
         if hasattr(app, 'teardown_appcontext'):
@@ -32,11 +37,13 @@ class colorpicker(object):
         pass
 
     def injectem(self):
+        """ to inject the module into the template as colorpicker """
         @self.app.context_processor
         def inject_vars():
             return dict(colorpicker=self)
 
     def loader(self):
+        """ to get html imports of colorpicker scripts and css """
         html = ""
         for i, n in enumerate(['js', 'css']):
             links = ('https://cdnjs.cloudflare.com/ajax/' +
@@ -56,12 +63,24 @@ class colorpicker(object):
         return Markup(html)
 
     def picker(self, id=".colorpicker",
-               default_color='rgb(0,0,255,0.5)',
+               default_color='rgb(0,0,255)',
                color_format='rgb',
                showAlpha='true',
                showInput='false',
                showButtons='false',
                allowEmpty='true'):
+        """
+        to get html ready colorpicker initiation with the given options
+        @param: id identifier of the html element to assign the color picker to
+        (Default: '.colorpicker')
+        @param: default_color for the colorpicker to start with (Default:
+        'rgb(0,0,255)')
+        @param: color_format color format to use (Default: 'rgb')
+        @param: showAlpha to enable alpha (Default: 'true')
+        @param: showInput to show or hide the color format (Default: 'false')
+        @param: showButtons to show or hide buttons (Default: 'false')
+        @param: allowEmpty to allow or disallow empty input (Default: 'true')
+        """
         for h, a in {'id': id,
                      'showAlpha': showAlpha,
                      'showInput': showInput,
@@ -83,4 +102,4 @@ class colorpicker(object):
                                 'move: function(color) {',
                                 '$("%s").val(color.toRgbString());' % id,
                                 '},', '});',
-                                '</script>']))
+                                '</script>']))  # html ready colorpicker
