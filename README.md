@@ -1,9 +1,8 @@
 <h1 align='center'>flask_colorpicker</h1>
-<h3 align='center'>A [Flask][9c2c9277] extension to add [Spectrum][2e6e1a93] javascript color picker into the template, it makes adding and configuring multiple color pickers at a time much easier and less time consuming.</h3>
-
-  [9c2c9277]: http://flask.pocoo.org/ "Flask website"
-  [2e6e1a93]: https://github.com/bgrins/spectrum "Spectrum repo"
-
+<h3 align='center'>A [Flask][9c2c9277] extension to add [Spectrum][2e6e1a93] javascript color picker into the template, it makes adding and configuring multiple color pickers at a time much easier and less time consuming.
+[9c2c9277]: http://flask.pocoo.org/ "Flask website"
+[2e6e1a93]: https://github.com/bgrins/spectrum "Spectrum repo"
+</h3>
 <hr />
 
 ## Install :
