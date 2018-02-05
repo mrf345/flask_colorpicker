@@ -1,4 +1,4 @@
-from flask import current_app, Markup
+from flask import Markup
 from os import path
 try:
     from flask import _app_ctx_stack as stack
