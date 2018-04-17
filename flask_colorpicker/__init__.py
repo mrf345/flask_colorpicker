@@ -1,10 +1,8 @@
 from flask import Markup
-from os import path
-try:
-    from flask import _app_ctx_stack as stack
-except ImportError:
-    from flask import _request_ctx_stack as stack
-
+from os import path, name as osName
+from sys import version_info
+if version_info.major == 2:
+    FileNotFoundError = IOError
 
 class colorpicker(object):
     def __init__(self, app=None, local=[]):
@@ -25,7 +23,7 @@ class colorpicker(object):
                     TypeError(
                         "colorpicker(local=) requires a list of" +
                         " two files spectrum.js and spectrum.css"))
-        self.injectem()  # injecting module into the template
+        self.injectThem()  # injecting module into the template
 
     def init_app(self, app):
         if hasattr(app, 'teardown_appcontext'):
@@ -36,7 +34,7 @@ class colorpicker(object):
     def teardown(self, exception):
         pass
 
-    def injectem(self):
+    def injectThem(self):
         """ to inject the module into the template as colorpicker """
         @self.app.context_processor
         def inject_vars():
@@ -51,10 +49,25 @@ class colorpicker(object):
                      'https://cdnjs.cloudflare.com/ajax/' +
                      'libs/spectrum/1.8.0/spectrum.min.js') if (
                          self.local == []) else self.local
+
+            def togglePath(rev=False, links=links):
+                """
+                    Function to fix windows OS relative path issue
+                    ISSUE 1 : windows os path
+                    if windows used and windows path not used.
+                """
+                if osName == 'nt':
+                    order = ['/', '\\']
+                    if rev:
+                        order.reverse()
+                    for linkIndex, link in enumerate(links):
+                        links[linkIndex] = link.replace(order[0], order[1])
+            togglePath(False)
             for sl in self.local:
                 if not path.isfile(sl):
                     raise(FileNotFoundError(
                         "colorpicker.loader() file not found "))
+            togglePath(True)
             tags = ['<script src="%s"></script>\n',
                     '<link href="%s" rel="stylesheet">\n']
             html += tags[i] % [
@@ -91,7 +104,7 @@ class colorpicker(object):
             if h != 'id' and a != 'true' and a != 'false':
                 raise(TypeError(
                     "colorpicker.picker(%s) only true or false string" % h))
-        return Markup(" ".join(['<script>',
+        return Markup(" ".join(['<script> $(document).ready(function () {'
                                 '$("%s").spectrum({' % id,
                                 'showAlpha: %s,' % showAlpha,
                                 'showInput: %s,' % showInput,
@@ -100,6 +113,6 @@ class colorpicker(object):
                                 'color: "%s",' % default_color,
                                 'preferredFormat: "%s",' % color_format,
                                 'move: function(color) {',
-                                '$("%s").val(color.toRgbString());' % id,
-                                '},', '});',
-                                '</script>']))  # html ready colorpicker
+                                '$("%s").val(color.toRgbString())' % id,
+                                '},', '})',
+                                '}) </script>']))  # html ready colorpicker
