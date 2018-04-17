@@ -110,7 +110,7 @@ class colorpicker(object):
                                 'showInput: %s,' % showInput,
                                 'showButtons: %s,' % showButtons,
                                 'allowEmpty: %s,' % allowEmpty,
-                                'color: "%s",' % default_color,
+                                'color: $("%s").val() || "%s",' % (id, default_color),
                                 'preferredFormat: "%s",' % color_format,
                                 'move: function(color) {',
                                 '$("%s").val(color.toRgbString())' % id,
