@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-# from flask_datepicker import datepicker
+# from flask_colorpicker import colorpicker
 # Some junk to solve loading module path from parent dir
 from sys import path
 from os import getcwd, name

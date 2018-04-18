@@ -63,10 +63,12 @@ class colorpicker(object):
                     for linkIndex, link in enumerate(links):
                         links[linkIndex] = link.replace(order[0], order[1])
             togglePath(False)
-            for sl in self.local:
+            for ind, sl in enumerate(self.local):
                 if not path.isfile(sl):
                     raise(FileNotFoundError(
                         "colorpicker.loader() file not found "))
+                if not sl.startswith('/'):
+                    self.local[ind] = '/' + sl
             togglePath(True)
             tags = ['<script src="%s"></script>\n',
                     '<link href="%s" rel="stylesheet">\n']
