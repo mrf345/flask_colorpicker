@@ -44,30 +44,28 @@ class colorpicker(object):
         """ to get html imports of colorpicker scripts and css """
         html = ""
         for i, n in enumerate(['js', 'css']):
-            links = ('https://cdnjs.cloudflare.com/ajax/' +
-                     'libs/spectrum/1.8.0/spectrum.min.css',
-                     'https://cdnjs.cloudflare.com/ajax/' +
-                     'libs/spectrum/1.8.0/spectrum.min.js') if (
+            links = ['https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css',
+                     'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js'] if (
                          self.local == []) else self.local
-
-            def togglePath(rev=False, links=links):
-                """
-                    Function to fix windows OS relative path issue
-                    ISSUE 1 : windows os path
-                    if windows used and windows path not used.
-                """
-                if osName == 'nt':
-                    order = ['/', '\\']
-                    if rev:
-                        order.reverse()
-            togglePath(False)
-            for sl in self.local:
-                if not path.isfile(sl):
-                    raise(FileNotFoundError(
-                        "colorpicker.loader() file not found "))
-            togglePath(True)
-            for link in links:
-                links.append('/' + links.pop())
+            if self.local != []:
+                def togglePath(rev=False, links=links):
+                    """
+                        Function to fix windows OS relative path issue
+                        ISSUE 1 : windows os path
+                        if windows used and windows path not used.
+                    """
+                    if osName == 'nt':
+                        order = ['/', '\\']
+                        if rev:
+                            order.reverse()
+                togglePath(False)
+                for sl in self.local:
+                    if not path.isfile(sl):
+                        raise(FileNotFoundError(
+                            "colorpicker.loader() file not found "))
+                togglePath(True)
+                for link in links:
+                    links.append('/' + links.pop())
             tags = ['<script src="%s"></script>\n',
                     '<link href="%s" rel="stylesheet">\n']
             html += tags[i] % [
