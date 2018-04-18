@@ -12,10 +12,9 @@ from setuptools import setup
 
 setup(
     name='Flask-Colorpicker',
-    version='0.6',
+    version='0.7',
     url='https://github.com/mrf345/flask_colorpicker/',
-    download_url='https://github.com/mrf345/flask_colorpicker/archive/0.6.' +
-    'tar.gz',
+    download_url='https://github.com/mrf345/flask_colorpicker/archive/0.7.tar.gz',
     license='MIT',
     author='Mohamed Feddad',
     author_email='mrf345@gmail.com',
