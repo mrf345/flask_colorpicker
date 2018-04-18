@@ -60,16 +60,16 @@ class colorpicker(object):
                     order = ['/', '\\']
                     if rev:
                         order.reverse()
-                    for linkIndex, link in enumerate(links):
-                        links[linkIndex] = link.replace(order[0], order[1])
             togglePath(False)
             for sl in self.local:
                 if not path.isfile(sl):
                     raise(FileNotFoundError(
                         "colorpicker.loader() file not found "))
             togglePath(True)
-            tags = ['<script src="/%s"></script>\n',
-                    '<link href="/%s" rel="stylesheet">\n']
+            for link in links:
+                links.append('/' + links.pop())
+            tags = ['<script src="%s"></script>\n',
+                    '<link href="%s" rel="stylesheet">\n']
             html += tags[i] % [
                 l for l in links if l.split(
                     '.')[len(l.split('.')) - 1] == n][0]
