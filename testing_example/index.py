@@ -15,7 +15,7 @@ path.append(
 from flask_colorpicker import colorpicker
 
 app = Flask(__name__, template_folder='.')
-colorpicker(app)
+colorpicker(app, local=['static/spectrum.js', 'static/spectrum.css'])
 
 
 @app.route('/')

@@ -45,8 +45,7 @@ class colorpicker(object):
         html = ""
         for i, n in enumerate(['js', 'css']):
             links = ['https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css',
-                     'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js'] if (
-                         self.local == []) else self.local
+                     'https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js'] if self.local == [] else self.local
             if self.local != []:
                 def togglePath(rev=False, links=links):
                     """
@@ -55,19 +54,22 @@ class colorpicker(object):
                         if windows used and windows path not used.
                     """
                     if osName == 'nt':
-                        order = ['/', '\\']
-                        if rev:
-                            order.reverse()
+                        order = ['\\', '/'] if rev else ['/', '\\']
+                        for linkIndex, link in enumerate(links):
+                            links[linkIndex] = link.replace(order[0], order[1])
                 togglePath(False)
-                for sl in self.local:
+                for sl in links:
                     if not path.isfile(sl):
                         raise(FileNotFoundError(
-                            "colorpicker.loader() file not found "))
+                            "colorpicker.loader() file not found " + sl))
                 togglePath(True)
-                for link in links:
-                    links.append('/' + links.pop())
-            tags = ['<script src="%s"></script>\n',
-                    '<link href="%s" rel="stylesheet">\n']
+            tags = [
+            '<script src="%s"></script>\n',
+            '<link href="%s" rel="stylesheet">\n'
+            ] if self.local == [] else [ 
+            '<script src="/%s"></script>\n',
+            '<link href="/%s" rel="stylesheet">\n'
+            ] # to fix additional / due to looping !!
             html += tags[i] % [
                 l for l in links if l.split(
                     '.')[len(l.split('.')) - 1] == n][0]
