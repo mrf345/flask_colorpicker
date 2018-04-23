@@ -113,6 +113,6 @@ class colorpicker(object):
                                 'color: $("%s").val() || "%s",' % (id, default_color),
                                 'preferredFormat: "%s",' % color_format,
                                 'move: function(color) {',
-                                '$("%s").val(color.toRgbString())' % id,
+                                '$(this).val(color.toRgbString())',
                                 '},', '})',
                                 '}) </script>']))  # html ready colorpicker
