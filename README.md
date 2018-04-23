@@ -41,7 +41,7 @@ colorpicker(app)
 #### - Customize:
 >The accepted arguments to be passed to the `colorpicker.picker()` function are as follow:
 ```python
-def picker(self, id=".colorpicker", # id of element to assign colorpicker to
+def picker(self, ids=[".colorpicker"], # list of ids of element to assign colorpicker to
             default_color='rgb(0,0,255,0.5)', # default color to start with
             color_format='rgb', # color format to use
             showAlpha='true', # enable or disable transparency

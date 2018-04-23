@@ -75,7 +75,7 @@ class colorpicker(object):
                     '.')[len(l.split('.')) - 1] == n][0]
         return Markup(html)
 
-    def picker(self, id=".colorpicker",
+    def picker(self, ids=[".colorpicker"],
                default_color='rgb(0,0,255)',
                color_format='rgb',
                showAlpha='true',
@@ -84,7 +84,7 @@ class colorpicker(object):
                allowEmpty='true'):
         """
         to get html ready colorpicker initiation with the given options
-        @param: id identifier of the html element to assign the color picker to
+        @param: ids list of identifiers of the html element to assign the color picker to
         (Default: '.colorpicker')
         @param: default_color for the colorpicker to start with (Default:
         'rgb(0,0,255)')
@@ -94,8 +94,7 @@ class colorpicker(object):
         @param: showButtons to show or hide buttons (Default: 'false')
         @param: allowEmpty to allow or disallow empty input (Default: 'true')
         """
-        for h, a in {'id': id,
-                     'showAlpha': showAlpha,
+        for h, a in {'showAlpha': showAlpha,
                      'showInput': showInput,
                      'showButtons': showButtons,
                      'allowEmpty': allowEmpty}.items():
@@ -104,15 +103,21 @@ class colorpicker(object):
             if h != 'id' and a != 'true' and a != 'false':
                 raise(TypeError(
                     "colorpicker.picker(%s) only true or false string" % h))
-        return Markup(" ".join(['<script> $(document).ready(function () {'
-                                '$("%s").spectrum({' % id,
-                                'showAlpha: %s,' % showAlpha,
-                                'showInput: %s,' % showInput,
-                                'showButtons: %s,' % showButtons,
-                                'allowEmpty: %s,' % allowEmpty,
-                                'color: $("%s").val() || "%s",' % (id, default_color),
-                                'preferredFormat: "%s",' % color_format,
-                                'move: function(color) {',
-                                '$(this).val(color.toRgbString())',
-                                '},', '})',
-                                '}) </script>']))  # html ready colorpicker
+            if not isinstance(ids, list):
+                raise(TypeError("colorpicker.picker(ids) requires a list of strings"))
+        html = ""
+        for id in ids:
+            html += " ".join([
+                '<script> $(document).ready(function () {'
+                '$("%s").spectrum({' % id,
+                'showAlpha: %s,' % showAlpha,
+                'showInput: %s,' % showInput,
+                'showButtons: %s,' % showButtons,
+                'allowEmpty: %s,' % allowEmpty,
+                'color: $("%s").val() || "%s",' % (id, default_color),
+                'preferredFormat: "%s",' % color_format,
+                'move: function(color) {',
+                '$(this).val(color.toRgbString())',
+                '},', '})',
+                '}) </script>'])
+        return Markup(html) # html ready colorpicker

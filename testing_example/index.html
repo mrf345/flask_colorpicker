@@ -6,12 +6,12 @@
         <title>Document</title>
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         {{ colorpicker.loader() }}
-        {{ colorpicker.picker(id='.inp') }}
+        {{ colorpicker.picker(ids=['.inp', '.inpa']) }}
     </head>
     <body>
         <form>
             <input class='inp' value='rgba(0,0,0,1)' />
-            <input class='inp' value='rgba(0,0,0,1)' />
+            <input class='inpa' value='rgba(0,255,0,1)' />
         </form>
     </body>
 </html>
