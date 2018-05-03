@@ -28,7 +28,7 @@ colorpicker(app)
 {% block scripts %}
   {{ super() }}
   {{ colorpicker.loader() }}
-  {{ colorpicker.picker(id=".cp") }}
+  {{ colorpicker.picker(ids=[".cp"]) }}
 {% endblock %}
 {% block content %}
   <form class="verticalform">
