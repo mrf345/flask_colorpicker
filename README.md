@@ -24,7 +24,7 @@ colorpicker(app)
 ```
 #### - inside the jinja template
 ```jinja
-{% extends 'bootstrap/base.html'}
+{% extends 'bootstrap/base.html' %}
 {% block scripts %}
   {{ super() }}
   {{ colorpicker.loader() }}
