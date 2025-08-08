@@ -1,10 +1,12 @@
-from flask import Markup
 from os import path, name as osName
 from sys import version_info
+
+from markupsafe import Markup
+
 if version_info.major == 2:
     FileNotFoundError = IOError
 
-class colorpicker(object):
+class ColorPicker(object):
     def __init__(self, app=None, local=[]):
         """
         initiating extension with flask app instance
@@ -94,6 +96,8 @@ class colorpicker(object):
         @param: showButtons to show or hide buttons (Default: 'false')
         @param: allowEmpty to allow or disallow empty input (Default: 'true')
         """
+        html = ""
+
         for h, a in {'showAlpha': showAlpha,
                      'showInput': showInput,
                      'showButtons': showButtons,
@@ -105,7 +109,7 @@ class colorpicker(object):
                     "colorpicker.picker(%s) only true or false string" % h))
             if not isinstance(ids, list):
                 raise(TypeError("colorpicker.picker(ids) requires a list of strings"))
-        html = ""
+
         for id in ids:
             html += " ".join([
                 '<script> $(document).ready(function () {'
@@ -120,4 +124,7 @@ class colorpicker(object):
                 '$(this).val(color.toRgbString())',
                 '},', '})',
                 '}) </script>'])
-        return Markup(html) # html ready colorpicker
+
+        return Markup(html)
+
+colorpicker = ColorPicker
